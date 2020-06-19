@@ -50,11 +50,6 @@ const available = "AVAILABLE QUESTIONS";
 function questionCheck() {
     const refreshElement = getElementByInnerText("span", " Refresh");
 
-    if (refreshElement === -1) {
-        console.log("stopping script");
-        return;
-    }
-
     console.log('refreshing');
     refreshElement.click();
 
@@ -66,4 +61,6 @@ function questionCheck() {
     setTimeout(questionCheck, 10000); //10,000 is 10 seconds
 }
 
-setTimeout(questionCheck, 10000); //wait for the page to load before starting, needed for Violentmonkey
+window.addEventListener('load', function () {
+    !(getElementByInnerText("span", " Refresh") === -1) && questionCheck();
+});
