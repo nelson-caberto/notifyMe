@@ -27,7 +27,7 @@ function notifyMe(msg) {
 
 function getElementByInnerText(tag, text) {
     var tags = document.getElementsByTagName(tag);
-    
+
     for (var i = 0; i < tags.length; i++)
       if (tags[i].textContent == text) return tags[i];
 }
@@ -37,7 +37,7 @@ function questionCheck() {
     console.log('refreshing');
     refreshElement.click();
     
-    if (!window.find("ACTIVE QUESTIONS") && window.find("AVAILABLE QUESTIONS")) {
+    if (!window.find("ACTIVE QUESTIONS") && (window.find("IN CLASS ACTIVITY QUESTIONS") || window.find("AVAILABLE QUESTIONS"))) {
         console.log('notifying');
         notifyMe("New AskBCS Question!");
     }
