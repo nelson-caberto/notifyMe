@@ -25,23 +25,27 @@ function notifyMe(msg) {
     // want to be respectful there is no need to bother them any more.
 }
 
-var timeout = 10000;
-
-function questionCheck() {
-    var spanTags = document.getElementsByTagName("span");
-    var refreshElement;
+function getElementByInnerText(tag, text) {
+    var spanTags = document.getElementsByTagName(tag);
+    var result;
     
     for (var i = 0; i < spanTags.length; i++) {
-      if (spanTags[i].textContent == " Refresh") {
-        refreshElement = spanTags[i];
+      if (spanTags[i].textContent == text) {
+        result = spanTags[i];
         break;
       }
     }
-    
+    return result;
+}
+
+var timeout = 10000;
+
+function questionCheck() {
+    var refreshElement = getElementByInnerText("span", " Refresh");
     console.log('refreshing');
     refreshElement.click();
     
-    if (window.find('View Question')) {
+    if (window.find("AVAILABLE QUESTIONS") && !window.find("ACTIVE QUESTIONS")) {
         notifyMe("New AskBCS Question!");
         console.log('notifying');
     }
