@@ -1,3 +1,13 @@
+// ==UserScript==
+// @name        notifyMe AskBCS
+// @namespace   Violentmonkey Scripts
+// @match       https://app.slack.com/*
+// @grant       none
+// @version     0.1
+// @author      Nelson Caberto
+// @description Adds Browser to OS notification when AskBCS receives a new question. 6/19/2020, 12:52:37 PM
+// ==/UserScript==
+
 function notifyMe(msg) {
     // Let's check if the browser supports notifications
     if (!("Notification" in window)) {
@@ -49,4 +59,4 @@ function questionCheck() {
     setTimeout(questionCheck, 10000); //10,000 is 10 seconds
 }
 
-setTimeout(questionCheck, 10000); //wait for the page to load before starting
+setTimeout(questionCheck, 10000); //wait for the page to load before starting, needed for Violentmonkey
