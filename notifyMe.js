@@ -43,7 +43,7 @@ function questionCheck() {
     console.log('refreshing');
     refreshElement.click();
     
-    if (window.find("AVAILABLE QUESTIONS") && !window.find("ACTIVE QUESTIONS")) {
+    if (!window.find("ACTIVE QUESTIONS") && window.find("AVAILABLE QUESTIONS")) {
         console.log('notifying');
         notifyMe("New AskBCS Question!");
     }
