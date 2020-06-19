@@ -1,4 +1,3 @@
-
 function notifyMe(msg) {
     // Let's check if the browser supports notifications
     if (!("Notification" in window)) {
@@ -26,7 +25,7 @@ function notifyMe(msg) {
 }
 
 function getElementByInnerText(tag, text) {
-    var tags = document.getElementsByTagName(tag);
+    const tags = document.getElementsByTagName(tag);
 
     for (var i = 0; i < tags.length; i++)
       if (tags[i].textContent == text) return tags[i];
@@ -38,7 +37,7 @@ const inclass = "IN CLASS ACTIVITY QUESTIONS";
 const available = "AVAILABLE QUESTIONS";
 
 function questionCheck() {
-    var refreshElement = getElementByInnerText("span", " Refresh");
+    const refreshElement = getElementByInnerText("span", " Refresh");
     console.log('refreshing');
     refreshElement.click();
     
@@ -50,4 +49,4 @@ function questionCheck() {
     setTimeout(questionCheck, 10000); //10,000 is 10 seconds
 }
 
-questionCheck();
+setTimeout(questionCheck, 10000); //wait for the page to load before starting
