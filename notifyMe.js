@@ -27,15 +27,9 @@ function notifyMe(msg) {
 
 function getElementByInnerText(tag, text) {
     var tags = document.getElementsByTagName(tag);
-    var result;
     
-    for (var i = 0; i < tags.length; i++) {
-      if (tags[i].textContent == text) {
-        result = tags[i];
-        break;
-      }
-    }
-    return result;
+    for (var i = 0; i < tags.length; i++)
+      if (tags[i].textContent == text) return tags[i];
 }
 
 function questionCheck() {
