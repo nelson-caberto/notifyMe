@@ -38,8 +38,6 @@ function getElementByInnerText(tag, text) {
     return result;
 }
 
-var timeout = 10000;
-
 function questionCheck() {
     var refreshElement = getElementByInnerText("span", " Refresh");
     console.log('refreshing');
@@ -50,7 +48,7 @@ function questionCheck() {
         console.log('notifying');
     }
 
-    setTimeout(questionCheck, timeout);
+    setTimeout(questionCheck, 10000); //10,000 is 10 seconds
 }
 
-setTimeout(questionCheck, timeout);
+questionCheck();
