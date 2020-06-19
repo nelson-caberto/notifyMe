@@ -32,16 +32,17 @@ function getElementByInnerText(tag, text) {
       if (tags[i].textContent == text) return tags[i];
 }
 
+function is(question) { return window.find(question); }
+const active = "ACTIVE QUESTIONS";
+const inclass = "IN CLASS ACTIVITY QUESTIONS";
+const available = "AVAILABLE QUESTIONS";
+
 function questionCheck() {
     var refreshElement = getElementByInnerText("span", " Refresh");
     console.log('refreshing');
     refreshElement.click();
     
-    const active = window.find("ACTIVE QUESTIONS");
-    const inclass = window.find("IN CLASS ACTIVITY QUESTIONS");
-    const available = window.find("AVAILABLE QUESTIONS");
-
-    if (!active && (inclass || available)) {
+    if (!is(active) && (is(inclass) || is(available))) {
         console.log('notifying');
         notifyMe("New AskBCS Question!");
     }
