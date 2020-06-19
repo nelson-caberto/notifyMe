@@ -28,11 +28,6 @@ function notifyMe(msg) {
 var timeout = 10000;
 
 function questionCheck() {
-    if (window.find('View Question')) {
-        notifyMe("New AskBCS Question!");
-        console.log('notifying');
-    }
-
     var spanTags = document.getElementsByTagName("span");
     var refreshElement;
     
@@ -44,6 +39,12 @@ function questionCheck() {
     }
     
     refreshElement.click();
+    
+    if (window.find('View Question')) {
+        notifyMe("New AskBCS Question!");
+        console.log('notifying');
+    }
+
     console.log('refreshing');
     setTimeout(questionCheck, timeout);
 }
