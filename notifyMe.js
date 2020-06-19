@@ -37,7 +37,11 @@ function questionCheck() {
     console.log('refreshing');
     refreshElement.click();
     
-    if (!window.find("ACTIVE QUESTIONS") && (window.find("IN CLASS ACTIVITY QUESTIONS") || window.find("AVAILABLE QUESTIONS"))) {
+    const active = window.find("ACTIVE QUESTIONS");
+    const inclass = window.find("IN CLASS ACTIVITY QUESTIONS");
+    const available = window.find("AVAILABLE QUESTIONS");
+
+    if (!active && (inclass || available)) {
         console.log('notifying');
         notifyMe("New AskBCS Question!");
     }
