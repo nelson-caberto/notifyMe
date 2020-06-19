@@ -26,12 +26,12 @@ function notifyMe(msg) {
 }
 
 function getElementByInnerText(tag, text) {
-    var spanTags = document.getElementsByTagName(tag);
+    var tags = document.getElementsByTagName(tag);
     var result;
     
-    for (var i = 0; i < spanTags.length; i++) {
-      if (spanTags[i].textContent == text) {
-        result = spanTags[i];
+    for (var i = 0; i < tags.length; i++) {
+      if (tags[i].textContent == text) {
+        result = tags[i];
         break;
       }
     }
@@ -44,8 +44,8 @@ function questionCheck() {
     refreshElement.click();
     
     if (window.find("AVAILABLE QUESTIONS") && !window.find("ACTIVE QUESTIONS")) {
-        notifyMe("New AskBCS Question!");
         console.log('notifying');
+        notifyMe("New AskBCS Question!");
     }
 
     setTimeout(questionCheck, 10000); //10,000 is 10 seconds
