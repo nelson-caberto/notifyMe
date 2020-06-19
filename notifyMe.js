@@ -38,6 +38,7 @@ function questionCheck() {
       }
     }
     
+    console.log('refreshing');
     refreshElement.click();
     
     if (window.find('View Question')) {
@@ -45,7 +46,6 @@ function questionCheck() {
         console.log('notifying');
     }
 
-    console.log('refreshing');
     setTimeout(questionCheck, timeout);
 }
 
