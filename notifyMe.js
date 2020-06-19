@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        notifyMe AskBCS
 // @namespace   Violentmonkey Scripts
-// @match       https://app.slack.com/*
+// @match       https://app.slack.com/*/app
 // @grant       none
 // @version     0.1
 // @author      Nelson Caberto
@@ -38,7 +38,8 @@ function getElementByInnerText(tag, text) {
     const tags = document.getElementsByTagName(tag);
 
     for (var i = 0; i < tags.length; i++)
-      if (tags[i].textContent == text) return tags[i];
+        if (tags[i].textContent == text) return tags[i];
+    return -1;
 }
 
 function is(question) { return window.find(question); }
@@ -48,9 +49,15 @@ const available = "AVAILABLE QUESTIONS";
 
 function questionCheck() {
     const refreshElement = getElementByInnerText("span", " Refresh");
+
+    if (refreshElement === -1) {
+        console.log("stopping script");
+        return;
+    }
+
     console.log('refreshing');
     refreshElement.click();
-    
+
     if (!is(active) && (is(inclass) || is(available))) {
         console.log('notifying');
         notifyMe("New AskBCS Question!");
