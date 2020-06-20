@@ -48,25 +48,22 @@ const active = "ACTIVE QUESTIONS";
 const inclass = "IN CLASS ACTIVITY QUESTIONS";
 const available = "AVAILABLE QUESTIONS";
 
-function questionCheck() {
+function clickRefresh() {
     const refreshElement = getElementByInnerText("span", " Refresh");
-
     console.log('refreshing');
     refreshElement.click();
-
-    //wait 2 seconds after refreshing to allow questions to load
-    setTimeout(function(){
-        console.log('checking');
-        if (!is(active) && (is(inclass) || is(available))) {
-            console.log('notifying');
-            notifyMe("New AskBCS Question!");
-        }
-        console.log('waiting')
-        setTimeout(questionCheck, 10000); //10,000 is 10 seconds
-    }, 2000);
+    setTimeout(questionCheck, 2000);
 }
 
-questionCheck();
+function questionCheck() {
+    console.log('checking');
+    if (!is(active) && (is(inclass) || is(available))) {
+        console.log('notifying');
+        notifyMe("New AskBCS Question!");
+    }
+    console.log('waiting')
+    setTimeout(clickRefresh, 10000); //10,000 is 10 seconds
+}
 
 window.addEventListener('load', function () {
     !(getElementByInnerText("span", " Refresh") === -1) && questionCheck();
