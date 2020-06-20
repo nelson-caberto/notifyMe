@@ -8,6 +8,7 @@
 // @description Adds Browser to OS notification when AskBCS receives a new question. 6/19/2020, 12:52:37 PM
 // ==/UserScript==
 
+// https://developer.mozilla.org/en-US/docs/Web/API/notification
 function notifyMe(msg) {
     // Let's check if the browser supports notifications
     if (!("Notification" in window)) {
@@ -34,7 +35,7 @@ function notifyMe(msg) {
     // want to be respectful there is no need to bother them any more.
 }
 
-
+// https://stackoverflow.com/questions/3813294/how-to-get-element-by-innertext
 function getElementByInnerText(tag, text) {
     const tags = document.getElementsByTagName(tag);
 
@@ -49,22 +50,22 @@ const inclass = "IN CLASS ACTIVITY QUESTIONS";
 const available = "AVAILABLE QUESTIONS";
 
 function clickRefresh() {
-    const refreshElement = getElementByInnerText("span", " Refresh");
     console.log('refreshing');
+    const refreshElement = getElementByInnerText("span", " Refresh");
     refreshElement.click();
-    setTimeout(questionCheck, 2000);
+    setTimeout(checkQuestion, 2000);
 }
 
-function questionCheck() {
+function checkQuestion() {
     console.log('checking');
     if (!is(active) && (is(inclass) || is(available))) {
         console.log('notifying');
         notifyMe("New AskBCS Question!");
     }
     console.log('waiting')
-    setTimeout(clickRefresh, 10000); //10,000 is 10 seconds
+    setTimeout(clickRefresh, 10000);
 }
 
 window.addEventListener('load', function () {
-    !(getElementByInnerText("span", " Refresh") === -1) && questionCheck();
+    !(getElementByInnerText("span", " Refresh") === -1) && checkQuestion();
 });
