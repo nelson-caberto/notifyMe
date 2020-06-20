@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        notifyMe AskBCS
 // @namespace   Violentmonkey Scripts
-// @match       https://app.slack.com/*/app
+// @match       https://app.slack.com/*
 // @grant       none
 // @version     0.1
 // @author      Nelson Caberto
@@ -34,6 +34,7 @@ function notifyMe(msg) {
     // want to be respectful there is no need to bother them any more.
 }
 
+
 function getElementByInnerText(tag, text) {
     const tags = document.getElementsByTagName(tag);
 
@@ -60,6 +61,8 @@ function questionCheck() {
 
     setTimeout(questionCheck, 10000); //10,000 is 10 seconds
 }
+
+questionCheck();
 
 window.addEventListener('load', function () {
     !(getElementByInnerText("span", " Refresh") === -1) && questionCheck();
