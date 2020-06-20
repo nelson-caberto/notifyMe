@@ -54,12 +54,16 @@ function questionCheck() {
     console.log('refreshing');
     refreshElement.click();
 
-    if (!is(active) && (is(inclass) || is(available))) {
-        console.log('notifying');
-        notifyMe("New AskBCS Question!");
-    }
-
-    setTimeout(questionCheck, 10000); //10,000 is 10 seconds
+    //wait 2 seconds after refreshing to allow questions to load
+    setTimeout(function(){
+        console.log('checking');
+        if (!is(active) && (is(inclass) || is(available))) {
+            console.log('notifying');
+            notifyMe("New AskBCS Question!");
+        }
+        console.log('waiting')
+        setTimeout(questionCheck, 10000); //10,000 is 10 seconds
+    }, 2000);
 }
 
 questionCheck();
