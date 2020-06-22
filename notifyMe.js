@@ -7,6 +7,25 @@
 // @author      Nelson Caberto
 // @description Adds Browser to OS notification when AskBCS receives a new question. 6/19/2020, 12:52:37 PM
 // ==/UserScript==
+var isMac = window.navigator.platform !== "Win32";
+
+if (isMac) {
+    var audioNode = document.createElement("audio");
+    audioNode.setAttribute("id","macOSnotification");
+    var sourceNode = document.createElement("source");
+    sourceNode.setAttribute("src","https://github.com/nelson-caberto/notifyMe/blob/master/anxious.ogg?raw=true")
+    sourceNode.setAttribute("type","audio/ogg");
+
+    audioNode.appendChild(sourceNode);
+
+    var refreshElement = getElementByInnerText("span", " Refresh");
+    refreshElement.parentElement.appendChild(audioNode)
+}
+
+function playMacAudio() {
+    audioElement = document.getElementById("macOSnotification");
+    audioElement.play();
+}
 
 // https://developer.mozilla.org/en-US/docs/Web/API/notification
 function notifyMe(msg) {
@@ -19,6 +38,7 @@ function notifyMe(msg) {
     else if (Notification.permission === "granted") {
         // If it's okay let's create a notification
         var notification = new Notification(msg);
+        isMac && playMacAudio();
     }
 
     // Otherwise, we need to ask the user for permission
@@ -27,6 +47,7 @@ function notifyMe(msg) {
             // If the user accepts, let's create a notification
             if (permission === "granted") {
                 var notification = new Notification(msg);
+                isMac && playMacAudio();
             }
         });
     }
