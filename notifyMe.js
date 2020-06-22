@@ -9,19 +9,6 @@
 // ==/UserScript==
 var isMac = window.navigator.platform !== "Win32";
 
-if (isMac) {
-    var audioNode = document.createElement("audio");
-    audioNode.setAttribute("id","macOSnotification");
-    var sourceNode = document.createElement("source");
-    sourceNode.setAttribute("src","https://github.com/nelson-caberto/notifyMe/blob/master/anxious.ogg?raw=true")
-    sourceNode.setAttribute("type","audio/ogg");
-
-    audioNode.appendChild(sourceNode);
-
-    var refreshElement = getElementByInnerText("span", " Refresh");
-    refreshElement.parentElement.appendChild(audioNode)
-}
-
 function playMacAudio() {
     audioElement = document.getElementById("macOSnotification");
     audioElement.play();
@@ -88,5 +75,17 @@ function checkQuestion() {
 }
 
 window.addEventListener('load', function () {
+    if (isMac) {
+        var audioNode = document.createElement("audio");
+        audioNode.setAttribute("id","macOSnotification");
+        var sourceNode = document.createElement("source");
+        sourceNode.setAttribute("src","https://github.com/nelson-caberto/notifyMe/blob/master/anxious.ogg?raw=true")
+        sourceNode.setAttribute("type","audio/ogg");
+    
+        audioNode.appendChild(sourceNode);
+    
+        var refreshElement = getElementByInnerText("span", " Refresh");
+        refreshElement.parentElement.appendChild(audioNode)
+    }
     !(getElementByInnerText("span", " Refresh") === -1) && checkQuestion();
 });
