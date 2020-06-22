@@ -9,7 +9,17 @@
 // ==/UserScript==
 var isMac = window.navigator.platform !== "Win32";
 
-function playMacAudio() {
+function playAudio() {
+    var audioNode = document.createElement("audio");
+    audioNode.setAttribute("id","macOSnotification");
+    var sourceNode = document.createElement("source");
+    sourceNode.setAttribute("src","https://github.com/nelson-caberto/notifyMe/blob/master/anxious.ogg?raw=true")
+    sourceNode.setAttribute("type","audio/ogg");
+
+    audioNode.appendChild(sourceNode);
+
+    var refreshElement = getElementByInnerText("span", " Refresh");
+    refreshElement.parentElement.appendChild(audioNode)
     audioElement = document.getElementById("macOSnotification");
     audioElement.play();
 }
@@ -25,7 +35,7 @@ function notifyMe(msg) {
     else if (Notification.permission === "granted") {
         // If it's okay let's create a notification
         var notification = new Notification(msg);
-        isMac && playMacAudio();
+        isMac && playAudio();
     }
 
     // Otherwise, we need to ask the user for permission
@@ -34,7 +44,7 @@ function notifyMe(msg) {
             // If the user accepts, let's create a notification
             if (permission === "granted") {
                 var notification = new Notification(msg);
-                isMac && playMacAudio();
+                isMac && playAudio();
             }
         });
     }
@@ -75,17 +85,5 @@ function checkQuestion() {
 }
 
 window.addEventListener('load', function () {
-    if (isMac) {
-        var audioNode = document.createElement("audio");
-        audioNode.setAttribute("id","macOSnotification");
-        var sourceNode = document.createElement("source");
-        sourceNode.setAttribute("src","https://github.com/nelson-caberto/notifyMe/blob/master/anxious.ogg?raw=true")
-        sourceNode.setAttribute("type","audio/ogg");
-    
-        audioNode.appendChild(sourceNode);
-    
-        var refreshElement = getElementByInnerText("span", " Refresh");
-        refreshElement.parentElement.appendChild(audioNode)
-    }
     !(getElementByInnerText("span", " Refresh") === -1) && checkQuestion();
 });
