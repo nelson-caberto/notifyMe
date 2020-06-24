@@ -7,13 +7,13 @@
 // @author      Nelson Caberto
 // @description Adds Browser to OS notification when AskBCS receives a new question. 6/19/2020, 12:52:37 PM
 // ==/UserScript==
-var isMac = window.navigator.platform !== "Win32";
+const isMac = window.navigator.platform !== "Win32";
 
 function playAudio() {
     var audioNode = document.createElement("audio");
     audioNode.setAttribute("id","macOSnotification");
     var sourceNode = document.createElement("source");
-    sourceNode.setAttribute("src","https://github.com/nelson-caberto/notifyMe/blob/master/anxious.ogg?raw=true")
+    sourceNode.setAttribute("src","https://github.com/nelson-caberto/notifyMe/blob/master/anxious.ogg?raw=true");
     sourceNode.setAttribute("type","audio/ogg");
 
     audioNode.appendChild(sourceNode);
@@ -70,6 +70,11 @@ const available = "AVAILABLE QUESTIONS";
 function clickRefresh() {
     console.log('refreshing');
     const refreshElement = getElementByInnerText("span", " Refresh");
+    if (refreshElement === -1) {
+        console.log('refresh button not found');
+        setTimeout(clickRefresh, 10000);
+        return;
+    }
     refreshElement.click();
     setTimeout(checkQuestion, 2000);
 }
