@@ -80,6 +80,7 @@ function clickRefresh() {
 }
 
 function checkQuestion() {
+    removeAvailableQuestion();
     console.log('checking');
     if (!is(active) && (is(inclass) || is(available))) {
         console.log('notifying');
