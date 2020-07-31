@@ -113,11 +113,12 @@ function removeAvailableQuestion() {
             tagParent4.remove();
             console.log("removed " + ask);
         }
-        aq = getElementByInnerText('span', "AVAILABLE QUESTIONS").parentElement.parentElement.parentElement.parentElement.parentElement;
-        rq = getElementByInnerText('span', "RESOLVED QUESTIONS").parentElement.parentElement.parentElement.parentElement.parentElement;
-        if (aq.nextElementSibling.nextElementSibling === rq) {
-            aq.nextElementSibling.remove();
-            aq.remove();
-        }
     });
+
+    aq = getElementByInnerText('span', "AVAILABLE QUESTIONS").parentElement.parentElement.parentElement.parentElement.parentElement;
+    rq = getElementByInnerText('span', "RESOLVED QUESTIONS").parentElement.parentElement.parentElement.parentElement.parentElement;
+    if (aq.nextElementSibling.nextElementSibling === rq) {
+        aq.nextElementSibling.remove();
+        aq.remove();
+    }
 }
