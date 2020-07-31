@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://app.slack.com/*
 // @grant       none
-// @version     0.1
+// @version     0.2
 // @author      Nelson Caberto
 // @description Adds Browser to OS notification when AskBCS receives a new question. 6/19/2020, 12:52:37 PM
 // ==/UserScript==
@@ -89,6 +89,33 @@ function checkQuestion() {
     setTimeout(clickRefresh, 10000);
 }
 
-window.addEventListener('load', function () {
+//window.addEventListener stopped working on latest chrome
+function start() {
     !(getElementByInnerText("span", " Refresh") === -1) && checkQuestion();
-});
+}
+
+setTimeout(start, 5000);
+
+function removeAvailableQuestion() {
+    const ask = [
+        "ASK-6887 | Previous assignment",
+        "ASK-6891 | Previous assignment"
+    ]
+
+    ask.forEach(ask=>{
+        tag = getElementByInnerText('span', ask);
+        if (tag !== -1) {
+            tag.parentElement.parentElement.parentElement.parentElement.nextElementSibling.remove()
+            tag.parentElement.parentElement.parentElement.parentElement.nextElementSibling.remove()
+            tag.parentElement.parentElement.parentElement.parentElement.previousElementSibling.remove()
+            tag.parentElement.parentElement.parentElement.parentElement.remove()    
+            console.log("removed " + ask);
+        }
+        aq = getElementByInnerText('span', "AVAILABLE QUESTIONS").parentElement.parentElement.parentElement.parentElement.parentElement;
+        rq = getElementByInnerText('span', "RESOLVED QUESTIONS").parentElement.parentElement.parentElement.parentElement.parentElement;
+        if (aq.nextElementSibling.nextElementSibling === rq) {
+            aq.nextElementSibling.remove();
+            aq.remove();
+        }
+    });
+}
