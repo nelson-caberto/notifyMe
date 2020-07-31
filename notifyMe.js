@@ -106,10 +106,10 @@ function removeAvailableQuestion() {
     ask.forEach(ask=>{
         tag = getElementByInnerText('span', ask);
         if (tag !== -1) {
-            tag.parentElement.parentElement.parentElement.parentElement.nextElementSibling.remove()
-            tag.parentElement.parentElement.parentElement.parentElement.nextElementSibling.remove()
-            tag.parentElement.parentElement.parentElement.parentElement.previousElementSibling.remove()
-            tag.parentElement.parentElement.parentElement.parentElement.remove()    
+            tag.parentElement.parentElement.parentElement.parentElement.nextElementSibling.remove();
+            tag.parentElement.parentElement.parentElement.parentElement.nextElementSibling.remove();
+            tag.parentElement.parentElement.parentElement.parentElement.previousElementSibling.remove();
+            tag.parentElement.parentElement.parentElement.parentElement.remove();
             console.log("removed " + ask);
         }
         aq = getElementByInnerText('span', "AVAILABLE QUESTIONS").parentElement.parentElement.parentElement.parentElement.parentElement;
