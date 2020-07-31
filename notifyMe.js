@@ -101,7 +101,7 @@ function removeAvailableQuestion() {
     const ask = [
         "ASK-6887 | Previous assignment",
         "ASK-6891 | Previous assignment"
-    ]
+    ];
 
     ask.forEach(ask=>{
         tag = getElementByInnerText('span', ask);
