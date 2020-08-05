@@ -80,7 +80,10 @@ function clickRefresh() {
 }
 
 function checkQuestion() {
-    removeAvailableQuestion();
+    // if there are stuck questions, remove them
+    if (getElementByInnerText("span", "AVAILABLE QUESTIONS") !== -1) {
+        removeAvailableQuestion();
+    }
     console.log('checking');
     if (!is(active) && (is(inclass) || is(available))) {
         console.log('notifying');
