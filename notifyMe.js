@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://app.slack.com/*
 // @grant       none
-// @version     0.2
+// @version     0.3
 // @author      Nelson Caberto
 // @description Adds Browser to OS notification when AskBCS receives a new question. 6/19/2020, 12:52:37 PM
 // ==/UserScript==
